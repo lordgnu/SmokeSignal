@@ -1,5 +1,9 @@
 <?php
 
+function jump($url = '/') {
+	header('Location: ' . $url);
+}
+
 function loadSerialData() {
 	if (file_exists(DATA_DIR . DS . 'data.serial')) {
 		return unserialize(file_get_contents(DATA_DAR . DS . 'data.serial'));

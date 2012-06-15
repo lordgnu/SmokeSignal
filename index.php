@@ -46,6 +46,7 @@ $_DATA = loadSerialData();
 $templateFile = 'dashboard.tpl';
 $headerText = 'Smoke Buddy';
 $footerText = '';
+$jump = false;
 
 $smarty->assignByRef('templateFile', $templateFile);
 $smarty->assignByRef('headerText', $headerText);
@@ -81,7 +82,7 @@ switch ($action) {
 			$userAdded = addUser($user);
 			if ($userAdded === true) {
 				// User added successfully!
-				$templateFile = 'dashboard.tpl';
+				$jump = true;
 			} else {
 				// There was an error
 				$smarty->assign('error', $userAdded);
@@ -103,5 +104,11 @@ setcookie('sbData', serialize($sbData), strtotime('+1 year'));
 // Save Serial Data
 saveSerialData();
 
-// Load the template
-$smarty->display('main.tpl');
+if ($jump === false) {
+	// Load the template
+	$smarty->display('main.tpl');
+} elseif ($jump === true) {
+	jump();
+} else {
+	jump($jump);
+}

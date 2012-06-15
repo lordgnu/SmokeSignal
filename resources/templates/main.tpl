@@ -7,12 +7,23 @@
                 </h3>
             </div>
             <div data-role="content" style="padding: 15px">
-                <div style="">
-                    <img style="width: 100%;" src="http://rpmedia.ask.com/ts?u=/wikipedia/commons/thumb/2/2e/No_smoking_nuvola_.svg/50px-No_smoking_nuvola_.svg.png" />
-                </div>
+                <ul data-role="listview" data-divider-theme="a" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        My Status
+                    </li>
+                    <li data-theme="e">
+                        <a href="#smoke" data-transition="slide">
+                            <img src="/images/not-smoking.png" />
+                            <h3>Don Bauer (Me)</h3>
+                            <p>Not currently smoking</p>
+                        </a>
+                    </li>
+                </ul>
+                
                 <a data-role="button" data-transition="fade" data-theme="a" href="#page1" data-icon="check" data-iconpos="left">
                     I am going to smoke
                 </a>
+                
                 <ul data-role="listview" data-divider-theme="a" data-inset="true">
                     <li data-role="list-divider" role="heading">
                         Smokers

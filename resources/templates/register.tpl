@@ -45,19 +45,19 @@
 	                <!-- Name -->
 	                <div data-role="fieldcontain">
 	                    <label for="name">Full Name:</label>
-	                    <input type="text" name="name" id="name" data-mini="true" />
+	                    <input type="text" name="name" id="name" data-mini="true" value="{$smarty.post.name}" />
 	                </div>
 	                
 	                <!-- Pin Number -->
 	                <div data-role="fieldcontain">
 	                    <label for="pin">4-Digit PIN #:</label>
-	                    <input type="text" name="pin" id="pin" data-mini="true" maxlength="4" />
+	                    <input type="text" name="pin" id="pin" data-mini="true" maxlength="4" value="{$smarty.post.pin}" />
 	                </div>
 	                
 	                <!-- Smoke Timer -->
 	                <div data-role="fieldcontain">
 	                    <label for="timer">Smoke Timer (Minutes):</label>
-	                    <input type="range" name="timer" id="timer" value="10" min="5" max="30" data-highlight="true" data-mini="true" />
+	                    <input type="range" name="timer" id="timer" value="{$smarty.post.timer|default:'10'}" min="5" max="30" data-highlight="true" data-mini="true" />
 	                </div>
 	                
 	                <!-- Submit -->

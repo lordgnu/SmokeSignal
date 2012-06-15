@@ -2,12 +2,18 @@
     {include file='global/jqm.header.tpl'}
     <div data-role="content" style="padding: 15px">
         <div data-role="collapsible-set">
+            {if $error != ''}
+            <div class="ui-body ui-body-e">
+                <h3>Error Reported</h3>
+                <p>{$error}</p>
+            </div>
+            {/if}
 	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="false">
 		        <h3>Already Registered?</h3>
 		        <form method="post" action="/login">
 			        <!-- Drop Down Here -->
 			        <div data-role="fieldcontain">
-	                    <label for="login-name" class="select">Organization:</label>
+	                    <label for="login-name" class="select">Who Are You?:</label>
 	                    <select name="login-name" id="login-name" data-native-menu="false" data-mini="true">
 	                        <option>Don Bauer</option>
 	                    </select>
@@ -25,14 +31,16 @@
 	        <div data-role="collapsible" data-theme="a" data-content-theme="d">
 	            <h3>Register</h3>
 	            <form method="post" action="/register/submit">
+	                {*
 	                <!-- Organization -->
 	                <div data-role="fieldcontain">
 	                    <label for="orgnanization" class="select">Organization:</label>
 	                    <select name="organization" id="orangization" data-native-menu="false" data-mini="true">
 	                        <option>Charter Communications</option>
+	                        <option>Crouching Llama</option>
 	                    </select>
 	                </div>
-	                
+	                *}
 	                <!-- Name -->
 	                <div data-role="fieldcontain">
 	                    <label for="name">Full Name:</label>

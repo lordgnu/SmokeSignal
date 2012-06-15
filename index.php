@@ -16,6 +16,9 @@ defined('CACHE_DIR')	||	define('CACHE_DIR', DATA_DIR . DS . 'cache');
 // Include Libraries
 require_once LIB_DIR . DS . 'smarty' . DS . 'Smarty.class.php';
 
+// Include Subs
+require_once LIB_DIR . DS . 'smokeBuddy' . DS . 'subs.php';
+
 // Instance Smarty
 $smarty = new Smarty();
 
@@ -32,11 +35,22 @@ $smarty->clearCompiledTemplate();
 $action = array_key_exists('action', $_GET) ? $_GET['action'] : 'default';
 $switch = array_key_exists('switch', $_GET) ? $_GET['switch'] : 'default';
 
+// Load Data
+$_DATA = loadINIdata();
+
 /*
  * $templateFile = Template File to Include
  * $headerText = Header Text
  * $footerText = Footer Text
  * */
+$templateFile = 'dashboard.tpl';
+$headerText = 'Smoke Buddy';
+$footerText = '';
+
+$smarty->assignByRef('templateFile', $templateFile);
+$smarty->assignByRef('headerText', $headerText);
+$smarty->assignByRef('footerText', $footerText);
+
 
 // Check for login cookie
 if (array_key_exists('sbData', $_COOKIE)) {
@@ -60,11 +74,31 @@ if ($sbData['Name'] == '') {
 switch ($action) {
 	case 'register':
 		if ($switch == 'submit') {
+			// Get Post Data
+			$user = array(
+				'name'			=>	$_POST['name'],
+				//'organization'	=>	$_POST['organization'],
+				'pin'			=>	$_POST['pin'],
+				'timer'			=>	(int) $_POST['timer']
+			);
 			
+			// Add User
+			$userAdded = addUser($user);
+			if ($userAdded === true) {
+				// User added successfully!
+				$templateFile = 'dashboard.tpl';
+			} else {
+				// There was an error
+				$smarty->assign('error', $userAdded);
+				$templateFile = 'register.tpl';
+			}
 		} else {
 			// Show the form
-			$smarty->assign('templateFile', 'register.tpl');
+			$templateFile = 'register.tpl';
 		}
+		break;
+	default:
+		$templateFile = 'dashboard.tpl';
 		break;
 }
 

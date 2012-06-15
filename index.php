@@ -28,8 +28,48 @@ $smarty->setTemplateDir(TPL_DIR)
 $smarty->clearAllCache();
 $smarty->clearCompiledTemplate();
 
-// Real Logic Goes Here
+// Set dispatch variables
+$action = array_key_exists('action', $_GET) ? $_GET['action'] : 'default';
+$switch = array_key_exists('switch', $_GET) ? $_GET['switch'] : 'default';
+
+/*
+ * $templateFile = Template File to Include
+ * $headerText = Header Text
+ * $footerText = Footer Text
+ * */
+
+// Check for login cookie
+if (array_key_exists('sbData', $_COOKIE)) {
+	// SmokeBuddy Cookie found!
+	$sbData = unserialize($_COOKIE['sbData']);
+} else {
+	$sbData = array(
+		'INI'	=>	'',
+		'Name'	=>	'',
+		'Hash'	=>	''
+	);
+}
+
+// Perform Requested Action
+if ($sbData['Name'] == '') {
+	// User needs to register or login
+	$action = 'register';
+}
+
+// Switch on Action
+switch ($action) {
+	case 'register':
+		if ($switch == 'submit') {
+			
+		} else {
+			// Show the form
+			$smarty->assign('templateFile', 'register.tpl');
+		}
+		break;
+}
+
+// Update Cookie
+setcookie('sbData', serialize($sbData), strtotime('+1 year'));
 
 // Load the template
 $smarty->display('main.tpl');
-

@@ -19,10 +19,17 @@ require_once LIB_DIR . DS . 'smarty' . DS . 'Smarty.class.php';
 // Instance Smarty
 $smarty = new Smarty();
 
-// chaining of method calls
+// Set Smarty Directories
 $smarty->setTemplateDir(TPL_DIR)
 		->setCompileDir(CACHE_DIR)
 		->setCacheDir(CACHE_DIR);
 
+// Clear Smarty Cache
+$smarty->clearAllCache();
+$smarty->clearCompiledTemplate();
+
+// Real Logic Goes Here
+
+// Load the template
 $smarty->display('main.tpl');
 

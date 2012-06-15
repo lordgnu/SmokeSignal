@@ -1,15 +1,38 @@
 <?php
 
-function loadINIdata() {
-	return parse_ini_file(DATA_DIR . DS . 'data.ini');
+function loadSerialData() {
+	if (file_exists(DATA_DIR . DS . 'data.serial')) {
+		return unserialize(file_get_contents(DATA_DAR . DS . 'data.serial'));
+	} else {
+		return array(
+			'control'	=>	array(),
+			'users'	=>	array()
+		);
+	}
 }
 
-function saveINIdata($filename, $data) {
-	
+function saveSerialData() {
+	global $_DATA;
+	file_put_contents(serialize($_DATA));
 }
 
 function addUser($data) {
-	global $_DATA;
+	global $_DATA, $sbData;
 	
-	return "Adding users is not currently supported!";
+	// Check for this user's full name
+	foreach ($_DATA['users'] as $user) {
+		if ($user['name'] == $data['name']) {
+			return 'It seems you are already registered';
+		}
+	}
+	
+	// Add User to Index
+	$data['hash'] = sha1($data['name'] . $data['pin']);
+	$index = count($_DATA['users']);
+	$_DATA['users'][$index] = $data;
+	
+	$data['index'] = $index;
+	$sbData = $data;
+	
+	return true;
 }

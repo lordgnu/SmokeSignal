@@ -36,7 +36,7 @@ $action = array_key_exists('action', $_GET) ? $_GET['action'] : 'default';
 $switch = array_key_exists('switch', $_GET) ? $_GET['switch'] : 'default';
 
 // Load Data
-$_DATA = loadINIdata();
+$_DATA = loadSerialData();
 
 /*
  * $templateFile = Template File to Include
@@ -53,19 +53,14 @@ $smarty->assignByRef('footerText', $footerText);
 $smarty->assign('error', false);
 
 // Check for login cookie
+$sbData = array();
 if (array_key_exists('sbData', $_COOKIE)) {
 	// SmokeBuddy Cookie found!
 	$sbData = unserialize($_COOKIE['sbData']);
-} else {
-	$sbData = array(
-		'INI'	=>	'',
-		'Name'	=>	'',
-		'Hash'	=>	''
-	);
 }
 
 // Perform Requested Action
-if ($sbData['Name'] == '') {
+if ($sbData['name'] == '') {
 	// User needs to register or login
 	$action = 'register';
 }
@@ -104,6 +99,9 @@ switch ($action) {
 
 // Update Cookie
 setcookie('sbData', serialize($sbData), strtotime('+1 year'));
+
+// Save Serial Data
+saveSerialData();
 
 // Load the template
 $smarty->display('main.tpl');

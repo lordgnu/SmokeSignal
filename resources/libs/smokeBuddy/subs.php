@@ -13,7 +13,7 @@ function loadSerialData() {
 
 function saveSerialData() {
 	global $_DATA;
-	file_put_contents(serialize($_DATA));
+	file_put_contents(DATA_DIR . DS . 'data.serial', serialize($_DATA));
 }
 
 function addUser($data) {

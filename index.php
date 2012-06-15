@@ -55,9 +55,9 @@ $smarty->assign('error', false);
 
 // Check for login cookie
 $sbData = array();
-if (array_key_exists('sbData', $_COOKIE)) {
+if (array_key_exists('sb', $_COOKIE)) {
 	// SmokeBuddy Cookie found!
-	$sbData = unserialize($_COOKIE['sbData']);
+	$sbData = unserialize($_COOKIE['sb']);
 }
 
 // Perform Requested Action
@@ -98,11 +98,8 @@ switch ($action) {
 		break;
 }
 
-print_r($_COOKIE);
-die();
-
 // Update Cookie
-setcookie('sbData', serialize($sbData), strtotime('+1 year'), '/');
+setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
 
 // Save Serial Data
 saveSerialData();

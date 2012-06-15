@@ -50,7 +50,7 @@ $footerText = '';
 $smarty->assignByRef('templateFile', $templateFile);
 $smarty->assignByRef('headerText', $headerText);
 $smarty->assignByRef('footerText', $footerText);
-
+$smarty->assign('error', false);
 
 // Check for login cookie
 if (array_key_exists('sbData', $_COOKIE)) {

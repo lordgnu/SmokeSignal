@@ -2,7 +2,7 @@
     {include file='global/jqm.header.tpl'}
     <div data-role="content">
         <div data-role="collapsible-set">
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error != ''}false{else}true{/if}">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error === false}false{else}true{/if}">
 		        <h3>Already Registered?</h3>
 		        <form method="post" action="/login">
 			        <!-- Drop Down Here -->
@@ -22,10 +22,10 @@
 	                <button type="submit" data-theme="a" data-mini="true">Submit</button>
 		        </form>
 	        </div>
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error != ''}true{else}false{/if}">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error === false}true{else}false{/if}">
 	            <h3>Register</h3>
 	            
-	            {if $error != ''}
+	            {if $error !== false}
 	            <div class="ui-body ui-body-e">
 	                <p>{$error}</p>
 	            </div>

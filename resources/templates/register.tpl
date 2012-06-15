@@ -1,14 +1,8 @@
 <div data-role="page" id="register">
     {include file='global/jqm.header.tpl'}
-    <div data-role="content" style="padding: 15px">
+    <div data-role="content">
         <div data-role="collapsible-set">
-            {if $error != ''}
-            <div class="ui-body ui-body-e">
-                <h3>Error Reported</h3>
-                <p>{$error}</p>
-            </div>
-            {/if}
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="false">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error != ''}false{else}true{/if}">
 		        <h3>Already Registered?</h3>
 		        <form method="post" action="/login">
 			        <!-- Drop Down Here -->
@@ -28,8 +22,15 @@
 	                <button type="submit" data-theme="a" data-mini="true">Submit</button>
 		        </form>
 	        </div>
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error != ''}true{else}false{/if}">
 	            <h3>Register</h3>
+	            
+	            {if $error != ''}
+	            <div class="ui-body ui-body-e">
+	                <p>{$error}</p>
+	            </div>
+	            {/if}
+	            
 	            <form method="post" action="/register/submit">
 	                {*
 	                <!-- Organization -->

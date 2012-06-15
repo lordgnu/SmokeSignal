@@ -28,6 +28,7 @@
                 </a>
             </li>
         </ul>
+        <pre>{$cookieDump}</pre>
     </div>
     {include file='global/jqm.footer.tpl'}
 </div>

@@ -94,10 +94,12 @@ switch ($action) {
 		}
 		break;
 	default:
-		$smarty->assign('cookieDump', print_r($_COOKIE, true));
 		$templateFile = 'dashboard.tpl';
 		break;
 }
+
+print_r($_COOKIE);
+die();
 
 // Update Cookie
 setcookie('sbData', serialize($sbData), strtotime('+1 year'), '/');

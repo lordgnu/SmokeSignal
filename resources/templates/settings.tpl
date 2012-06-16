@@ -6,6 +6,20 @@
 	            <h3>Notification Methods</h3>
 	            <!-- List Goes Here -->
 	            
+	            {if $msg != ''}
+                <div class="ui-body ui-body-e">
+                    <p>{$msg}</p>
+                </div>
+                {/if}
+	            
+	            <ul data-role="listview" data-divider-theme="a" data-inset="false">
+                    <li data-role="list-divider" role="heading">My Methods</li>
+                    {foreach $DATA['users'][$myIndex]['nmethods'] as $ni => $nmethod}
+                    <li>{$nmethod.address} <span class="ui-li-count">{if $nmethod.type == 'email'}E-Mail{else}SMS{/if}</span></li>
+                    {foreachelse}
+                    <li>No notification methods registered for you yet</li>
+                    {/foreach}
+                </ul>
 	        </div>
 	        
 	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="true">

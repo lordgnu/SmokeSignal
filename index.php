@@ -70,13 +70,24 @@ if (!array_key_exists('index', $sbData) || $sbData['index'] < 0) {
 	}
 } else {
 	$smarty->assign('myIndex', $sbData['index']);
+	$myIndex = $sbData['index'];
 }
 
 // Switch on Action
 switch ($action) {
 	case 'settings':
 		if ($switch == 'submit') {
+			$address = $_POST['address'];
+			$type = $_POST['type'];
 			
+			$_DATA['users'][$myIndex]['nmethods'][] = array(
+				'address'	=>	$address,
+				'type'	=>	$type
+			);
+			
+			$smarty->assign('msg', 'Notification method added!');
+			
+			$templateFile = 'settings.tpl';
 		} else {
 			$templateFile = 'settings.tpl';
 			$headerText = 'Notifications';
@@ -183,6 +194,12 @@ if ($jump === false) {
 		$smarty->assign('showSettings', true);
 	} else {
 		$smarty->assign('showSettings', false);
+	}
+	
+	if ($action != 'dashboard' && $action != 'register') {
+		$smarty->assign('showHome', true);
+	} else {
+		$smarty->assign('showHome', false);
 	}
 	
 	// Assign Smarty Helper Data

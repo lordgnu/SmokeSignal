@@ -15,8 +15,10 @@
 			        <!-- Drop Down Here -->
 			        <div data-role="fieldcontain">
 	                    <label for="login-name" class="select">Who Are You?:</label>
-	                    <select name="login-name" id="login-name" data-native-menu="false" data-mini="true">
-	                        <option>Don Bauer</option>
+	                    <select name="login-name" id="login-name" data-native-menu="true" data-mini="true">
+	                        {foreach $DATA.users as $user}
+	                        <option>{$user.name}</option>
+	                        {/foreach}
 	                    </select>
 	                </div>
 	                

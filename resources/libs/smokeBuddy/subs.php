@@ -116,9 +116,17 @@ function changeUserStatus($userIndex, $status) {
 function sendSmokingNotification($userIndex) {
 	global $_DATA;
 	
+	$cutOff = strtotime('-10 minutes');
+	
 	// Loop through users and send notification if they have not recieved one in the last 10 minutes
 	foreach ($_DATA['users'] as $user) {
+		// Check if this is the user sending the notification
 		
+		// Check if they are smoking already
+		
+		// Check if they are away
+		
+		// Check for last notification time
 	}
 }
 
@@ -128,4 +136,6 @@ function setUserSmartyData() {
 	$smarty->assignByRef('myName', $_DATA['users'][$sbData['index']]['name']);
 	$smarty->assignByRef('myStatus', $_DATA['users'][$sbData['index']]['status']);
 	$smarty->assignByRef('myTheme', $_DATA['users'][$sbData['index']]['statusTheme']);
+	$smarty->assignByRef('myData', $_DATA['users'][$sbData['index']]);
+	
 }

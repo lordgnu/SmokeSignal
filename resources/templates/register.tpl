@@ -4,6 +4,13 @@
         <div data-role="collapsible-set">
 	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{if $error === false}false{else}true{/if}">
 		        <h3>Already Registered?</h3>
+		        
+		        {if $loginError !== false}
+                <div class="ui-body ui-body-e">
+                    <p>{$loginError}</p>
+                </div>
+                {/if}
+		        
 		        <form method="post" action="/login">
 			        <!-- Drop Down Here -->
 			        <div data-role="fieldcontain">

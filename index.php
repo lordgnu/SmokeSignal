@@ -47,6 +47,7 @@ $templateFile = 'dashboard.tpl';
 $headerText = 'Smoke Buddy';
 $footerText = '';
 $jump = false;
+$loginError = false;
 
 $smarty->assignByRef('templateFile', $templateFile);
 $smarty->assignByRef('headerText', $headerText);
@@ -61,14 +62,37 @@ if (array_key_exists('sb', $_COOKIE)) {
 }
 
 // Check user cookie data
-if ($sbData['name'] == '') {
+if ($sbData['name'] == '' && $action != 'login') {
 	// User needs to register or login
 	$action = 'register';
 }
 
 // Switch on Action
 switch ($action) {
+	case 'login':
+		$name = $_POST['login-name'];
+		$pin = $_POST['login-pin'];
+		
+		// Loop through the users and find name
+		foreach ($_DATA['users'] as $user) {
+			if ($user['name'] == $name) {
+				// Found user!  Check Pin
+				if ($user['pin'] == $pin) {
+					$sbData = $user;
+					$jump = true;
+					break;
+				}
+			}
+		}
+		
+		if ($jump !== true) {
+			$loginError = 'Name and PIN do not match';
+			$templateFile = 'register.tpl';
+		}
+		break;
 	case 'register':
+		$smarty->assign('loginError', false);
+		
 		if ($switch == 'submit') {
 			// Get Post Data
 			$user = array(

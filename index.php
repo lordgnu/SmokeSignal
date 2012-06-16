@@ -116,7 +116,6 @@ switch ($action) {
 		break;
 	case 'debug':
 		$smarty->assign('myData', $_DATA);
-		$_DATA['users'][$sbData['index']] = $sbData;
 		$smarty->assign('sbData', $sbData);
 		$templateFile = 'debug.tpl';
 		$headerText = 'Debug Dump';
@@ -134,6 +133,12 @@ setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
 
 if ($jump === false) {
 	// Load the template
+	if ($action != 'settings' && $action != 'register') {
+		$smarty->assign('showSettings', true);
+	} else {
+		$smarty->assign('showSettings', false);
+	}
+	
 	$smarty->display('main.tpl');
 } elseif ($jump === true) {
 	jump();

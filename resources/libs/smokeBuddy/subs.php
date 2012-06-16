@@ -36,12 +36,47 @@ function addUser($data) {
 	$index = count($_DATA['users']);
 	$_DATA['users'][$index] = $data;
 	
+	$_DATA['users'][$index]['status'] = 'not-smoking';
+	$_DATA['users'][$index]['statusTime'] = time();
+	
 	$data['index'] = $index;
 	$sbData = $data;
 	
 	return true;
 }
 
-function changeUserStatus($userIndex, $smoking = true) {
+function changeUserStatus($userIndex, $status) {
+	global $_DATA;
 	
+	$time = time();
+	$expire = $time + ($_DATA['users'][$userIndex]['timer'] * 60);
+	
+	// Set the status in the main array for user
+	switch ($status) {
+		case 'smoking':
+			$_DATA['users'][$userIndex]['status'] = 'smoking';
+			$_DATA['users'][$userIndex]['statusTime'] = $time;
+			$_DATA['users'][$userIndex]['statusExpire'] = $expire;
+			sendSmokingNotification($userIndex);
+			break;
+		case 'non-smoking':
+			$_DATA['users'][$userIndex]['status'] = 'not-smoking';
+			$_DATA['users'][$userIndex]['statusTime'] = $time;
+			$_DATA['users'][$userIndex]['statusExpire'] = -1;
+			break;
+		case 'away':
+			$_DATA['users'][$userIndex]['status'] = 'away';
+			$_DATA['users'][$userIndex]['statusTime'] = $time;
+			$_DATA['users'][$userIndex]['statusExpire'] = -1;
+			break;
+	}
+}
+
+function sendSmokingNotification($userIndex) {
+	global $_DATA;
+	
+	// Loop through users and send notification if they have not recieved one in the last 10 minutes
+	foreach ($_DATA['users'] as $user) {
+		
+	}
 }

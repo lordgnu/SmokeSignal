@@ -116,6 +116,7 @@ switch ($action) {
 		break;
 	case 'debug':
 		$smarty->assign('myData', $_DATA);
+		$_DATA['users'][$sbData['index']] = $sbData;
 		$smarty->assign('sbData', $sbData);
 		$templateFile = 'debug.tpl';
 		$headerText = 'Debug Dump';

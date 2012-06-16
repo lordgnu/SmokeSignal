@@ -98,7 +98,7 @@ function changeUserStatus($userIndex, $status) {
 			$_DATA['users'][$userIndex]['statusExpire'] = $expire;
 			sendSmokingNotification($userIndex);
 			break;
-		case 'non-smoking':
+		case 'not-smoking':
 			$_DATA['users'][$userIndex]['status'] = 'not-smoking';
 			$_DATA['users'][$userIndex]['statusTime'] = $time;
 			$_DATA['users'][$userIndex]['statusExpire'] = -1;
@@ -151,7 +151,7 @@ function sendSmokingNotification($userIndex) {
 		// Send notifications
 		$_DATA['users'][$i]['lastNotify'] = time();
 		
-		$header = "From: noreply@crouchingllama.org\r\nContent-Type: text/plain";
+		$header = "From: SmokeBuddy <noreply@crouchingllama.org>";
 		
 		foreach ($user['nmethods'] as $m) {
 			if ($m['type'] == 'email') {

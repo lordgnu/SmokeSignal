@@ -69,6 +69,14 @@ if ($sbData['name'] == '' && $action != 'login') {
 
 // Switch on Action
 switch ($action) {
+	case 'settings':
+		if ($switch == 'submit') {
+			
+		} else {
+			$templateFile = 'settings.tpl';
+			$headerText = 'Notifications';
+		}
+		break;
 	case 'login':
 		$name = $_POST['login-name'];
 		$pin = $_POST['login-pin'];

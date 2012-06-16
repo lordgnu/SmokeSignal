@@ -14,17 +14,9 @@
             </li>
         </ul>
         <ul data-role="listview" data-divider-theme="a" data-inset="true">
-            <li data-role="list-divider" role="heading">
-                Buddies
-            </li>
-            <li data-theme="e">
-                <img src="/images/not-smoking-22.png" class="ul-li-icon" />
-                Don Bauer
-            </li>
-            <li data-theme="c">
-                <img src="/images/smoking-22.png" class="ul-li-icon" />
-                Eric Johnson
-            </li>
+            <li data-role="list-divider" role="heading">Buddies</li>
+            <li data-theme="e"><img src="/images/not-smoking-128.png" class="ui-li-icon" />Don Bauer</li>
+            <li data-theme="c"><img src="/images/smoking-22.png" class="ui-li-icon" />Eric Johnson</li>
         </ul>
     </div>
     {include file='global/jqm.footer.tpl'}

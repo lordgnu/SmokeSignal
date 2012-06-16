@@ -97,18 +97,28 @@ switch ($action) {
 		// Changing status
 		switch ($switch) {
 			case 'away':
-				// TODO: Add Change Status Function
-				break;
 			case 'smoking':
-				// TODO: Add Change Status Function
-				break;
 			case 'not-smoking':
-				// TODO: Add Change Status Function
+				changeUserStatus($sbData['index'], $switch);
+				
+				if ($switch == 'away') {
+					// Send to notification disabled time page
+					
+				} else {
+					// Send back to dashboard
+					$templateFile = 'dashboard.tpl';
+				}
 				break;
 			default:
 				$templateFile = 'status.tpl';
 				break;
 		}
+		break;
+	case 'debug':
+		$smarty->assign('dataDump', print_r($_DATA, true));
+		$smarty->assign('cookieDump', print_r($_COOKIE, true));
+		$templateFile = 'debug.tpl';
+		$headerText = 'Debug Dump';
 		break;
 	default:
 		$templateFile = 'dashboard.tpl';

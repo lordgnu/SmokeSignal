@@ -27,7 +27,7 @@
             <li data-theme="{$user.statusTheme}">
                 <img src="/images/{$user.status}-22.png" class="ui-li-icon" />
                 {$user.name}
-                {if $user.index == $myData.index}(Me){/if}
+                {if $user.name == $myData.name}(Me){/if}
             </li>
             {foreachelse}
             <li>No Buddies Registered Yet</li>

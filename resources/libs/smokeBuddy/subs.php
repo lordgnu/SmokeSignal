@@ -118,7 +118,7 @@ function sendSmokingNotification($userIndex) {
 	
 	$cutOff = strtotime('-10 minutes');
 	
-	$message = "{$_DATA['users'][$userIndex]['name']} is going to smoke!";
+	$message = $_DATA['users'][$userIndex]['name'] . " is going to smoke!";
 	
 	// Loop through users and send notification if they have not recieved one in the last 10 minutes
 	foreach ($_DATA['users'] as $i => $user) {
@@ -131,20 +131,20 @@ function sendSmokingNotification($userIndex) {
 		// Check if they are smoking already
 		if ($user['status'] == 'smoking') {
 			// Aready smoking
-			continue;
+			// continue;
 		}
 		
 		// Check if they are away
 		if ($user['status'] == 'away') {
 			// They are away
-			continue;
+			// continue;
 		}
 		
 		// Check for last notification time
 		if (array_key_exists('lastNotify', $user)) {
 			if ($user['lastNotify'] > $cutOff) {
 				// Already Been Notified in last 10 minutes
-				continue;
+				// continue;
 			}
 		}
 		
@@ -154,6 +154,10 @@ function sendSmokingNotification($userIndex) {
 		foreach ($user['nmethods'] as $m) {
 			if ($m['type'] == 'email') {
 				mail($m['address'], 'SmokeBuddy Notification', $message);
+			} elseif ($m['type'] == 'att') {
+				mail($m['address'] . '@mms.att.net', 'SmokeBuddy Notification', $message);
+			} elseif ($m['type'] == 'verizon') {
+				mail($m['address'] . '@vzwpix.com', 'SmokeBuddy Notification', $message);
 			}
 		}
 	}

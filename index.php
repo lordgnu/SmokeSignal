@@ -69,7 +69,7 @@ if (!array_key_exists('index', $sbData) || $sbData['index'] < 0) {
 		$action = 'register';
 	}
 } else {
-	$smarty->assign('myData', $sbData);
+	$smarty->assign('myIndex', $sbData['index']);
 }
 
 // Switch on Action
@@ -183,6 +183,11 @@ if ($jump === false) {
 		$smarty->assign('showSettings', true);
 	} else {
 		$smarty->assign('showSettings', false);
+	}
+	
+	// Assign Smarty Helper Data
+	if ($action != 'login' && $action != 'register') {
+		setUserSmartyData();
 	}
 	
 	$smarty->display('main.tpl');

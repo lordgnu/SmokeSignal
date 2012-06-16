@@ -4,6 +4,17 @@ function jump($url = '/') {
 	header('Location: ' . $url);
 }
 
+function getStatusTheme($status) {
+	switch ($status) {
+		case 'smoking':
+			return 'c';
+		case 'not-smoking':
+			return 'e';
+		default:
+			return 'b';
+	}
+}
+
 function loadSerialData() {
 	if (file_exists(DATA_DIR . DS . 'data.serial')) {
 		$data = unserialize(file_get_contents(DATA_DIR . DS . 'data.serial'));
@@ -27,6 +38,10 @@ function loadSerialData() {
 				$data['users'][$i]['statusTime'] = time();
 				$data['users'][$i]['statusExpire'] = -1;
 			}
+			
+			// Set status theme
+			$data['users'][$i]['statusTheme'] = getStatusTheme($data['users'][$i]['status']);
+			
 		}
 		
 		// Return Data
@@ -94,6 +109,8 @@ function changeUserStatus($userIndex, $status) {
 			$_DATA['users'][$userIndex]['statusExpire'] = -1;
 			break;
 	}
+	
+	$_DATA['users'][$userIndex]['statusTheme'] = getStatusTheme($status);
 }
 
 function sendSmokingNotification($userIndex) {
@@ -103,4 +120,12 @@ function sendSmokingNotification($userIndex) {
 	foreach ($_DATA['users'] as $user) {
 		
 	}
+}
+
+function setUserSmartyData() {
+	global $_DATA, $sbData, $smarty;
+	
+	$smarty->assignByRef('myName', $_DATA['users'][$sbData['index']]['name']);
+	$smarty->assignByRef('myStatus', $_DATA['users'][$sbData['index']]['status']);
+	$smarty->assignByRef('myTheme', $_DATA['users'][$sbData['index']]['statusTheme']);
 }

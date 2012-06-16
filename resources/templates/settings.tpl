@@ -12,7 +12,7 @@
                 </div>
                 {/if}
 	            
-	            <ul data-role="listview" data-divider-theme="a" data-inset="false">
+	            <ul data-role="listview" data-divider-theme="a" data-inset="true">
                     <li data-role="list-divider" role="heading">My Methods</li>
                     {foreach $DATA['users'][$myIndex]['nmethods'] as $ni => $nmethod}
                     <li>{$nmethod.address} <span class="ui-li-count">{if $nmethod.type == 'email'}E-Mail{else}SMS{/if}</span></li>

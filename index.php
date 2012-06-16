@@ -48,10 +48,12 @@ $headerText = 'Smoke Buddy';
 $footerText = '';
 $jump = false;
 $loginError = false;
+$clearCookie = false;
 
 $smarty->assignByRef('templateFile', $templateFile);
 $smarty->assignByRef('headerText', $headerText);
 $smarty->assignByRef('footerText', $footerText);
+$smarty->assignByRef('DATA', $_DATA);
 $smarty->assign('error', false);
 
 // Check for login cookie
@@ -62,9 +64,12 @@ if (array_key_exists('sb', $_COOKIE)) {
 }
 
 // Check user cookie data
-if ($sbData['name'] == '' && $action != 'login') {
-	// User needs to register or login
-	$action = 'register';
+if (!array_key_exists('index', $sbData) || $sbData['index'] < 0) {
+	if ($action != 'login' && $action != 'debug') {
+		$action = 'register';
+	}
+} else {
+	$smarty->assign('myData', $sbData);
 }
 
 // Switch on Action
@@ -151,6 +156,11 @@ switch ($action) {
 		$smarty->assign('sbData', $sbData);
 		$templateFile = 'debug.tpl';
 		$headerText = 'Debug Dump';
+		
+		if ($switch == 'clear') {
+			$_DATA = array();
+			$clearCookie = true;
+		}
 		break;
 	default:
 		$templateFile = 'dashboard.tpl';
@@ -161,7 +171,11 @@ switch ($action) {
 saveSerialData();
 
 // Update Cookie
-setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
+if ($clearCookie === true) {
+	setcookie('sb', '', strtotime('-1 year'), '/');
+} else {
+	setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
+}
 
 if ($jump === false) {
 	// Load the template

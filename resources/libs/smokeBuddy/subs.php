@@ -6,7 +6,31 @@ function jump($url = '/') {
 
 function loadSerialData() {
 	if (file_exists(DATA_DIR . DS . 'data.serial')) {
-		return unserialize(file_get_contents(DATA_DIR . DS . 'data.serial'));
+		$data = unserialize(file_get_contents(DATA_DIR . DS . 'data.serial'));
+		
+		// Check for status resets and the like
+		foreach ($data['users'] as $i => $user) {
+			if (array_key_exists('status', $user)) {
+				// Check for smoking and away statuses
+				if ($user['status'] == 'smoking' || $user['status'] == 'away') {
+					// Check to make sure that we have not passed the expire time
+					if ($user['statusExpire'] != -1 && $user['statusExpire'] < time()) {
+						// Status has expired
+						$data['users'][$i]['status'] = 'not-smoking';
+						$data['users'][$i]['statusTime'] = time();
+						$data['users'][$i]['statusExpire'] = -1;
+					}
+				}
+			} else {
+				// Set default status of not smoking
+				$data['users'][$i]['status'] = 'not-smoking';
+				$data['users'][$i]['statusTime'] = time();
+				$data['users'][$i]['statusExpire'] = -1;
+			}
+		}
+		
+		// Return Data
+		return $data;
 	} else {
 		return array(
 			'control'	=>	array(),

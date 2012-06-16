@@ -93,6 +93,22 @@ switch ($action) {
 			$templateFile = 'register.tpl';
 		}
 		break;
+	case 'status':
+		// Changing status
+		switch ($switch) {
+			case 'away':
+				// TODO: Add Change Status Function
+				break;
+			case 'smoking':
+				// TODO: Add Change Status Function
+				break;
+			case 'not-smoking':
+				// TODO: Add Change Status Function
+				break;
+			default:
+				$templateFile = 'status.tpl';
+				break;
+		}
 	default:
 		$templateFile = 'dashboard.tpl';
 		break;

@@ -141,13 +141,16 @@ function sendSmokingNotification($userIndex) {
 		}
 		
 		// Check for last notification time
-		if ($user['lastNotify'] > $cutOff) {
-			// Already Been Notified in last 10 minutes
-			continue;
+		if (array_key_exists('lastNotify', $user)) {
+			if ($user['lastNotify'] > $cutOff) {
+				// Already Been Notified in last 10 minutes
+				continue;
+			}
 		}
 		
 		// Send notifications
 		$_DATA['users'][$i]['lastNotify'] = time();
+		
 		foreach ($user['nmethods'] as $m) {
 			if ($m['type'] == 'email') {
 				mail($m['address'], 'SmokeBuddy Notification', $message);

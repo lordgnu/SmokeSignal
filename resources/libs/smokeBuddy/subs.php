@@ -151,7 +151,7 @@ function sendSmokingNotification($userIndex) {
 		// Send notifications
 		$_DATA['users'][$i]['lastNotify'] = time();
 		
-		$header = "From: SmokeBuddy <noreply@crouchingllama.org>";
+		$header = "Content-type: text/plain\r\nFrom: SmokeBuddy <smoke@crouchingllama.org>";
 		
 		foreach ($user['nmethods'] as $m) {
 			if ($m['type'] == 'email') {

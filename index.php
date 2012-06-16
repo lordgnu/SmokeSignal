@@ -115,8 +115,8 @@ switch ($action) {
 		}
 		break;
 	case 'debug':
-		$smarty->assign('dataDump', print_r($_DATA, true));
-		$smarty->assign('cookieDump', print_r($_COOKIE, true));
+		$smarty->assign('myData', $_DATA);
+		$smarty->assign('sbData', $sbData);
 		$templateFile = 'debug.tpl';
 		$headerText = 'Debug Dump';
 		break;

@@ -4,10 +4,10 @@
         <h3>Debug</h3>
         
         <strong>Cookie Dump</strong>
-        <pre>{$cookieDump}</pre>
+        <pre>{$sbData|print_r}</pre>
         
         <strong>DATA Dump</strong>
-        <pre>{$dataDump}</pre>
+        <pre>{$myData|print_r}</pre>
     </div>
     {include file='global/jqm.footer.tpl'}
 </div>

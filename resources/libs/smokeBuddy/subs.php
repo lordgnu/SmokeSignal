@@ -32,6 +32,7 @@ function addUser($data) {
 	
 	// Add User to Index
 	$data['hash'] = sha1($data['name'] . $data['pin']);
+	
 	$index = count($_DATA['users']);
 	$_DATA['users'][$index] = $data;
 	
@@ -39,4 +40,8 @@ function addUser($data) {
 	$sbData = $data;
 	
 	return true;
+}
+
+function changeUserStatus($userIndex, $smoking = true) {
+	
 }

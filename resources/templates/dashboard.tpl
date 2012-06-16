@@ -15,17 +15,15 @@
         </ul>
         <ul data-role="listview" data-divider-theme="a" data-inset="true">
             <li data-role="list-divider" role="heading">
-                Smokers
+                Buddies
             </li>
             <li data-theme="e">
-                <a href="#page1" data-transition="slide">
-                    [S] Don Bauer
-                </a>
+                <img src="/images/not-smoking-128.png" class="ul-li-icon" />
+                Don Bauer
             </li>
             <li data-theme="c">
-                <a href="#page1" data-transition="slide">
-                    [N] Eric Johnson
-                </a>
+                <img src="/images/smoking-128.png" class="ul-li-icon" />
+                Eric Johnson
             </li>
         </ul>
     </div>

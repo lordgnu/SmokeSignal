@@ -60,7 +60,7 @@ if (array_key_exists('sb', $_COOKIE)) {
 	$sbData = unserialize($_COOKIE['sb']);
 }
 
-// Perform Requested Action
+// Check user cookie data
 if ($sbData['name'] == '') {
 	// User needs to register or login
 	$action = 'register';
@@ -98,11 +98,11 @@ switch ($action) {
 		break;
 }
 
-// Update Cookie
-setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
-
 // Save Serial Data
 saveSerialData();
+
+// Update Cookie
+setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
 
 if ($jump === false) {
 	// Load the template

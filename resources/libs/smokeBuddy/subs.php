@@ -123,7 +123,7 @@ function sendSmokingNotification($userIndex) {
 	// Loop through users and send notification if they have not recieved one in the last 10 minutes
 	foreach ($_DATA['users'] as $i => $user) {
 		// Check if this is the user sending the notification
-		if ($user['index'] == $userIndex) {
+		if ($i == $userIndex) {
 			$_DATA['users'][$i]['lastNotify'] = time();
 			continue;
 		}
@@ -151,13 +151,15 @@ function sendSmokingNotification($userIndex) {
 		// Send notifications
 		$_DATA['users'][$i]['lastNotify'] = time();
 		
+		$header = "From: noreply@crouchingllama.org\r\nContent-Type: text/plain";
+		
 		foreach ($user['nmethods'] as $m) {
 			if ($m['type'] == 'email') {
-				mail($m['address'], 'SmokeBuddy Notification', $message);
+				mail($m['address'], 'SmokeBuddy Notification', $message, $header);
 			} elseif ($m['type'] == 'att') {
-				mail($m['address'] . '@mms.att.net', 'SmokeBuddy Notification', $message);
+				mail(trim($m['address']) . '@mms.att.net', '', $message, $header);
 			} elseif ($m['type'] == 'verizon') {
-				mail($m['address'] . '@vzwpix.com', 'SmokeBuddy Notification', $message);
+				mail(trim($m['address']) . '@vzwpix.com', '', $message, $header);
 			}
 		}
 	}

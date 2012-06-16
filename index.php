@@ -147,7 +147,7 @@ switch ($action) {
 			case 'away':
 			case 'smoking':
 			case 'not-smoking':
-				changeUserStatus($sbData['index'], $switch);
+				changeUserStatus($myIndex, $switch);
 				
 				if ($switch == 'away') {
 					// Send to notification disabled time page
@@ -194,7 +194,7 @@ if ($jump === false) {
 		$smarty->assign('showSettings', false);
 	}
 	
-	if ($action != 'dashboard' && $action != 'register') {
+	if ($templateFile != 'dashboard.tpl' && $action != 'register') {
 		$smarty->assign('showHome', true);
 	} else {
 		$smarty->assign('showHome', false);

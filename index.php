@@ -109,6 +109,7 @@ switch ($action) {
 				$templateFile = 'status.tpl';
 				break;
 		}
+		break;
 	default:
 		$templateFile = 'dashboard.tpl';
 		break;

@@ -18,11 +18,11 @@
                 Buddies
             </li>
             <li data-theme="e">
-                <img src="/images/not-smoking-128.png" class="ul-li-icon" />
+                <img src="/images/not-smoking-22.png" class="ul-li-icon" />
                 Don Bauer
             </li>
             <li data-theme="c">
-                <img src="/images/smoking-128.png" class="ul-li-icon" />
+                <img src="/images/smoking-22.png" class="ul-li-icon" />
                 Eric Johnson
             </li>
         </ul>

@@ -1,4 +1,4 @@
-<div data-role="page" id="dashboard">
+<div data-role="page" id="jump">
     {include file='global/jqm.header.tpl'}
     <div data-role="content" style="padding: 15px">
         <h3>Changes Applied</h3>
@@ -14,7 +14,7 @@
 <script type="text/javascript">
 {literal}
 setTimeout(function(){
-	$('a').attr('href', '{/literal}{$jumpURL}{literal}').trigger('click'));
-}, 750);
+	$.mobile.changePage('{/literal}{$jumpURL}{literal}');
+}, 1000);
 {/literal}
 </script>

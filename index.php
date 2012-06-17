@@ -208,7 +208,7 @@ if ($jump === false) {
 	if ($action != 'login' && $action != 'register') {
 		setUserSmartyData();
 	}
-	
+	$smarty->assign('idMod', str_replace(' ','-',microtime(false)));
 	$smarty->display('main.tpl');
 } elseif ($jump === true) {
 	jump();

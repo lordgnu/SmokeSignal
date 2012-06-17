@@ -8,7 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="apple-touch-icon" href="/images/webAppIcon.png" />
-        <link rel="apple-touch-startup-image" href="/images/webAppSplash.png" />
+        <link rel="apple-touch-startup-image" href="/images/launch.png" />
         
         <title>SmokeBuddy</title>
         <link rel="stylesheet" href="/css/jqm.css" />

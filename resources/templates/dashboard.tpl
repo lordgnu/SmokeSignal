@@ -28,6 +28,16 @@
                 <img src="/images/{$user.status}-22.png" class="ui-li-icon" />
                 {$user.name}
                 {if $user.name == $myData.name}(Me){/if}
+                
+                <span class="ui-li-count">
+                    {if ($smarty.now - $user.statusTime) > (3600)}
+                    &gt; 1 Hour
+                    {elseif ($smarty.now - $user.statusTime) < (120)}
+                    Just Now
+                    {else}
+                    {(($smarty.now - $user.statusTime) / 60)|intval} Minutes
+                    {/if}
+                </span>
             </li>
             {foreachelse}
             <li>No Buddies Registered Yet</li>

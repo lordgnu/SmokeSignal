@@ -28,7 +28,7 @@ function loadSerialData() {
 					if ($user['statusExpire'] != -1 && $user['statusExpire'] < time()) {
 						// Status has expired
 						$data['users'][$i]['status'] = 'not-smoking';
-						$data['users'][$i]['statusTime'] = time();
+						$data['users'][$i]['statusTime'] = $user['statusExpire'];
 						$data['users'][$i]['statusExpire'] = -1;
 					}
 				}

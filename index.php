@@ -210,7 +210,8 @@ if ($jump === false) {
 	}
 	
 	$smarty->display('main.tpl');
+} elseif ($jump === true) {
+	jump();
 } else {
-	$smarty->assign('jumpURL', ($jump === true) ? '/' : $jump);
-	$smarty->display('jump.tpl');
+	jump($jump);
 }

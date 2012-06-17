@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         <!-- Apple Specific Web-App Settings -->
-        <link rel="apple-touch-icon" href="/images/webAppIcon.png" />
-        <link rel="apple-touch-startup-image" href="/images/webAppSplash.png" />
+        <link rel="apple-touch-icon" href="http://smoke.crouchingllama.org/images/webAppIcon.png" />
+        <link rel="apple-touch-startup-image" href="http://smoke.crouchingllama.org/images/webAppSplash.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         
@@ -20,7 +20,7 @@
         <script type="text/javascript">
         $(document).bind("mobileinit", function(){
         	//apply overrides here
-        	$.mobile.loadingMessageTextVisible = true;
+        	$.mobile.loadingMessageTextVisible = false;
         	$.mobile.loadingMessage = "Loading...";
         });
         </script>

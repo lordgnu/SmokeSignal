@@ -186,6 +186,10 @@ if ($clearCookie === true) {
 	setcookie('sb', serialize($sbData), strtotime('+1 year'), '/');
 }
 
+if ($templateFile == 'dashboard.tpl' && $action != 'default') {
+	jump();
+}
+
 if ($jump === false) {
 	// Load the template
 	if ($action != 'settings' && $action != 'register') {

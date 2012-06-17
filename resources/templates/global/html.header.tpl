@@ -22,6 +22,11 @@
         	//apply overrides here
         	$.mobile.loadingMessageTextVisible = false;
         	$.mobile.loadingMessage = "Loading...";
+        	
+        	// Bind to page before change
+        	$(document).bind('pagebeforechange', function(event, data){
+        		data.options.reloadPage = true;
+        	});
         });
         </script>
         <script src="/js/jqm.js"></script>

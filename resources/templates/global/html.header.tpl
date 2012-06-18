@@ -41,7 +41,7 @@
         		click: function(e) {
         			e.preventDefault();
         			
-        			var url = $(e.target).attr('href');
+        			var url = $(this).attr('data-swipeurl');
         			
         			$(this).parents('li').slideUp();
         			

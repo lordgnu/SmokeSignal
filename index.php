@@ -89,6 +89,19 @@ switch ($action) {
 			
 			$templateFile = 'settings.tpl';
 		} else {
+			// Check for notification method count
+			$c = array();
+			if (count($_DATA['users'][$myIndex]['nmethods'])) {
+				$c['top'] = 'false';
+				$c['bottom'] = 'true';
+			} else {
+				$c['top'] = 'true';
+				$c['bottom'] = 'false';
+			}
+			
+			// Assign Count Data
+			$smarty->assign('c', $c);
+			
 			$templateFile = 'settings.tpl';
 			$headerText = 'Notifications';
 		}
@@ -160,11 +173,11 @@ switch ($action) {
 					$templateFile = 'expire.tpl';
 				} else {
 					// Send back to dashboard
-					$templateFile = 'dashboard.tpl';
+					jump();
 				}
 				break;
 			default:
-				$templateFile = 'status.tpl';
+				jump();
 				break;
 		}
 		break;
@@ -184,7 +197,7 @@ switch ($action) {
 			}
 			
 			// Update Expire Time
-			$expire = (($minutes * 60) + ($hours * 3600) + ($days * (3600 * 24)));
+			$expire = time() + (($minutes * 60) + ($hours * 3600) + ($days * (3600 * 24)));
 			changeUserExpire($myIndex, $expire);
 			
 			// Send to dashboard

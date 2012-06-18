@@ -2,7 +2,7 @@
     {include file='global/jqm.header.tpl'}
     <div data-role="content">
         <div data-role="collapsible-set">
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="false">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{$c.top}">
 	            <h3>Notification Methods</h3>
 	            <!-- List Goes Here -->
 	            
@@ -22,7 +22,7 @@
                 </ul>
 	        </div>
 	        
-	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="true">
+	        <div data-role="collapsible" data-theme="a" data-content-theme="d" data-collapsed="{$c.bottom}">
 		        <h3>Add Method</h3>
 		        <form method="post" action="/settings/submit">
 		            <!-- Email or SMS Number -->

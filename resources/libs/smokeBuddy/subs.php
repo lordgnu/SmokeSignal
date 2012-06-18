@@ -131,7 +131,7 @@ function sendSmokingNotification($userIndex) {
 	
 	$cutOff = strtotime('-10 minutes');
 	
-	$message = "Your buddy " . $_DATA['users'][$userIndex]['name'] . " is going to smoke!";
+	$defaultMessage = "Your buddy " . $_DATA['users'][$userIndex]['name'] . " is going to smoke!";
 	
 	// Loop through users and send notification if they have not recieved one in the last 10 minutes
 	foreach ($_DATA['users'] as $i => $user) {
@@ -166,6 +166,7 @@ function sendSmokingNotification($userIndex) {
 		
 		foreach ($user['nmethods'] as $m) {
 			// Setup Variable for this loop
+			$message = $defaultMessage;
 			$address = false;
 			$headers = array(
 					'From: SmokeBuddy <smoke@crouchingllama.org>'
@@ -178,14 +179,35 @@ function sendSmokingNotification($userIndex) {
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				
 				// Build HTML
-				$html = <<<HTML
-<html><head></head><body><h3>Smoke Buddy Notification</h3><p>{$message}</p></body></html>
+				$message = <<<HTML
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>TechHub :: ATOM Automation Notification</title>
+</head>
+<body>
+	<table style="border: medium none ; margin: 0px; padding: 0px; text-align: left; width: 100%%;">
+	  <tbody>
+		<tr>
+		  <td style="width: 128px;"><img style="width: 128px; height: 128px;" alt="SmokeBuddy" src="http://smoke.crouchingllama.org/images/webAppIcon.png"></td>
+		  <td colspan="2" rowspan="1" valign="middle">
+			<h3>Smoke Buddy Notification</h3>
+		  </td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center;">
+			{$defaultMessage}
+			</td>
+		</tr>
+	  </tbody>
+	</table>
+</body>
+</html>
 HTML;
-				// Assign HTML to Message
-				$message = $html;
 				
 				// Set Address
-				$address = $m['address'];
+				$address = trim($m['address']);
 				
 				// Add subject
 				$subject = 'SmokeBuddy Notification';

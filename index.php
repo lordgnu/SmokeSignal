@@ -177,7 +177,7 @@ switch ($action) {
 				}
 				break;
 			default:
-				jump();
+				$templateFile = 'status.tpl';
 				break;
 		}
 		break;

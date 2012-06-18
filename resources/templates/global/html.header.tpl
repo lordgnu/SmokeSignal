@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="/css/my.css" />
         <link rel="stylesheet" href="/css.jqm.swipe.css" />
         
+        {literal}
         <script src="/js/jq.js"></script>
         <script type="text/javascript">
         $(document).bind("mobileinit", function(){
@@ -40,8 +41,8 @@
         		btnClass: 'aSwipeBtn',
         		click: function(e) {
         			e.preventDefault();
-        			
-        			var url = $(this).parents('li').attr('rel');
+        			var url = $(e.target).attr('href');
+        			// var url = $(this).parents('li').attr('rel');
         			
         			console.log(url);
         			
@@ -52,5 +53,6 @@
         	});
         });
         </script>
+        {/literal}
     </head>
     <body>

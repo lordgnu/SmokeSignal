@@ -113,6 +113,12 @@ function changeUserStatus($userIndex, $status) {
 	$_DATA['users'][$userIndex]['statusTheme'] = getStatusTheme($status);
 }
 
+function changeUserExpire($userIndex, $expire = -1) {
+	global $_DATA;
+	
+	$_DATA['users'][$userIndex]['statusExpire'] = $expire;
+}
+
 function sendSmokingNotification($userIndex) {
 	global $_DATA;
 	

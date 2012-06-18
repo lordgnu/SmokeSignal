@@ -22,6 +22,7 @@
         	//apply overrides here
         	$.mobile.loadingMessageTextVisible = false;
         	$.mobile.loadingMessage = "Loading...";
+        	$.mobile.defaultPageTransition = "slide";
         	
         	// Bind to page before change
         	$(document).bind('pagebeforechange', function(event, data){

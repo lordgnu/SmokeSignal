@@ -149,9 +149,15 @@ switch ($action) {
 			case 'not-smoking':
 				changeUserStatus($myIndex, $switch);
 				
-				if ($switch == 'away') {
+				if ($switch != 'not-smoking') {
 					// Send to notification disabled time page
+					if ($switch == 'smoking') {
+						$smarty->assign('status', 'Smoking');
+					} else {
+						$smarty->assign('status', 'Away');
+					}
 					
+					$templateFile = 'expire.tpl';
 				} else {
 					// Send back to dashboard
 					$templateFile = 'dashboard.tpl';
@@ -160,6 +166,38 @@ switch ($action) {
 			default:
 				$templateFile = 'status.tpl';
 				break;
+		}
+		break;
+	case 'expire':
+		if ($switch == 'submit') {
+			$minutes = 0;
+			$hours = 0;
+			$days = 0;
+			
+			if ($_POST['status'] == 'Smoking') {
+				// Just Minutes
+				$minutes = (int) $_POST['minutes'];
+			} else {
+				// Hours and Days
+				$hours = (int) $_POST['hours'];
+				$days = (int) $_POST['days'];
+			}
+			
+			// Update Expire Time
+			$expire = (($minutes * 60) + ($hours * 3600) + ($days * (3600 * 24)));
+			changeUserExpire($myIndex, $expire);
+			
+			// Send to dashboard
+			jump();
+		} else {
+			if ($_DATA['users'][$myIndex]['status'] == 'smoking') {
+				$smarty->assign('status', 'Smoking');
+			} elseif ($_DATA['users'][$myIndex]['status'] == 'away') {
+				$smarty->assign('status', 'Away');
+			} else {
+				jump();
+			}
+			$templateFile = 'expire.tpl';
 		}
 		break;
 	case 'debug':

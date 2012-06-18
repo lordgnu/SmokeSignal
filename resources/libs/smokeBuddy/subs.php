@@ -116,7 +116,14 @@ function changeUserStatus($userIndex, $status) {
 function changeUserExpire($userIndex, $expire = -1) {
 	global $_DATA;
 	
-	$_DATA['users'][$userIndex]['statusExpire'] = $expire;
+	$_DATA['users'][$userIndex]['statusExpire'] = time() + $expire;
+	
+	// Check for expire timer default on user profile
+	if ($_DATA['users'][$userIndex]['status'] == 'smoking') {
+		if ($_DATA['users'][$userIndex]['timer'] * 60 != $expire) {
+			$_DATA['users'][$userIndex]['timer'] = (int) ($expire / 60);
+		}
+	}
 }
 
 function sendSmokingNotification($userIndex) {

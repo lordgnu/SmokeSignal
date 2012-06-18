@@ -197,7 +197,7 @@ switch ($action) {
 			}
 			
 			// Update Expire Time
-			$expire = time() + (($minutes * 60) + ($hours * 3600) + ($days * (3600 * 24)));
+			$expire = (($minutes * 60) + ($hours * 3600) + ($days * (3600 * 24)));
 			changeUserExpire($myIndex, $expire);
 			
 			// Send to dashboard

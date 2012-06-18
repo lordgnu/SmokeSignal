@@ -13,11 +13,13 @@
         <title>SmokeBuddy</title>
         <link rel="stylesheet" href="/css/jqm.css" />
         <link rel="stylesheet" href="/css/my.css" />
+        {*
         <link rel="stylesheet" href="/css.jqm.swipe.css" />
+        *}
         
-        {literal}
         <script src="/js/jq.js"></script>
         <script type="text/javascript">
+        {literal}
         $(document).bind("mobileinit", function(){
         	//apply overrides here
         	$.mobile.loadingMessageTextVisible = false;
@@ -29,10 +31,14 @@
         		data.options.reloadPage = true;
         	});
         });
+        {/literal}
         </script>
         <script src="/js/jqm.js"></script>
+        
+        {*
         <script src="/js/jqm.swipe.js"></script>
         <script type="text/javascript">
+        /*
         $(document).bind('pageinit', function(){
         	// Attach Swipe to Delete Plugin to Status
         	$('ul.swipeMe li').swipeDelete({
@@ -42,17 +48,12 @@
         		click: function(e) {
         			e.preventDefault();
         			var url = $(e.target).attr('href');
-        			// var url = $(this).parents('li').attr('rel');
         			
-        			console.log(url);
-        			
-        			/*
-        			$.post(url, function(data){console.log(data)});
-        			*/
         		}
         	});
         });
+        */
+        *}
         </script>
-        {/literal}
     </head>
     <body>

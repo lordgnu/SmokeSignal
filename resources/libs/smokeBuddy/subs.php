@@ -164,17 +164,49 @@ function sendSmokingNotification($userIndex) {
 		// Send notifications
 		$_DATA['users'][$i]['lastNotify'] = time();
 		
-		$header = "Content-type: text/plain\r\nFrom: SmokeBuddy <smoke@crouchingllama.org>";
-		
 		foreach ($user['nmethods'] as $m) {
+			// Setup Variable for this loop
+			$address = false;
+			$headers = array(
+					'From: SmokeBuddy <smoke@crouchingllama.org>'
+			);
+			$subject = '';
+			
 			if ($m['type'] == 'email') {
-				$html = "<html><head></head><body><h3>Smoke Buddy Notification</h3><p>{$message}</p></body></html>";
-				$header = "Content-type: text/html\r\nFrom: SmokeBuddy <smoke@crouchingllama.org>";
-				mail($m['address'], 'SmokeBuddy Notification', $html, $header);
+				// Set Headers
+				$headers[] = 'MIME-Version: 1.0';
+				$headers[] = 'Content-Type: text/html; charset=UTF-8';
+				
+				// Build HTML
+				$html = <<<HTML
+<html><head></head><body><h3>Smoke Buddy Notification</h3><p>{$message}</p></body></html>
+HTML;
+				// Assign HTML to Message
+				$message = $html;
+				
+				// Set Address
+				$address = $m['address'];
+				
+				// Add subject
+				$subject = 'SmokeBuddy Notification';
 			} elseif ($m['type'] == 'att') {
-				mail(trim($m['address']) . '@mms.att.net', '', $message, $header);
+				// Set Headers
+				$headers[] = 'Content-Type: text/plain';
+				
+				// Set Address
+				$address = trim($m['address']) . '@mms.att.net';
 			} elseif ($m['type'] == 'verizon') {
-				mail(trim($m['address']) . '@vzwpix.com', '', $message, $header);
+				// Set Headers
+				$headers[] = 'Content-Type: text/plain';
+				
+				// Set Address
+				$address = trim($m['address']) . '@vzwpix.com';
+			}
+			
+			// Send Message if address was set
+			if ($address !== false) {
+				$headers = implode(PHP_EOL, $headers);
+				@mail($address, $subject, $message, $headers);
 			}
 		}
 	}

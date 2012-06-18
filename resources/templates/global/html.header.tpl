@@ -45,7 +45,7 @@
         			
         			$(this).parents('li').slideUp();
         			
-        			console.log('URL', url);
+        			console.log('URL: ' + url);
         		}
         	});
         });

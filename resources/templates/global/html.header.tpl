@@ -36,16 +36,18 @@
         	// Attach Swipe to Delete Plugin to Status
         	$('ul.swipeMe li').swipeDelete({
         		btnTheme: 'e',
-        		btnLabel: 'Delete',
-        		btnClass: 'aSwipeButton',
+        		btnLabel: 'Remove',
+        		btnClass: 'aSwipeBtn',
         		click: function(e) {
         			e.preventDefault();
         			
-        			var url = $(this).attr('data-swipeurl');
+        			var url = $(this).parents('li').attr('rel');
         			
-        			$(this).parents('li').slideUp();
+        			console.log(url);
         			
-        			console.log('URL: ' + url);
+        			/*
+        			$.post(url, function(data){console.log(data)});
+        			*/
         		}
         	});
         });

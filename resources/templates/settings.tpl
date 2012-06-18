@@ -12,10 +12,10 @@
                 </div>
                 {/if}
 	            
-	            <ul data-role="listview" data-divider-theme="a" data-inset="true">
+	            <ul class="swipeMe" data-role="listview" data-divider-theme="a" data-inset="true">
                     <li data-role="list-divider" role="heading">My Methods</li>
                     {foreach $DATA['users'][$myIndex]['nmethods'] as $ni => $nmethod}
-                    <li>{$nmethod.address} <span class="ui-li-count">{if $nmethod.type == 'email'}E-Mail{else}SMS{/if}</span></li>
+                    <li data-swipeurl="/rmstat/{$ni}">{$nmethod.address} <span class="ui-li-count">{if $nmethod.type == 'email'}E-Mail{else}SMS{/if}</span></li>
                     {foreachelse}
                     <li>No notification methods registered for you yet</li>
                     {/foreach}

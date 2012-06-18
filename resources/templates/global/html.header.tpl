@@ -13,9 +13,8 @@
         <title>SmokeBuddy</title>
         <link rel="stylesheet" href="/css/jqm.css" />
         <link rel="stylesheet" href="/css/my.css" />
-        <style>
-            /* App custom styles */
-        </style>
+        <link rel="stylesheet" href="/css.jqm.swipe.css" />
+        
         <script src="/js/jq.js"></script>
         <script type="text/javascript">
         $(document).bind("mobileinit", function(){
@@ -31,5 +30,25 @@
         });
         </script>
         <script src="/js/jqm.js"></script>
+        <script src="/js/jqm.swipe.js"></script>
+        <script type="text/javascript">
+        $(document).bind('pageinit', function(){
+        	// Attach Swipe to Delete Plugin to Status
+        	$('ul.swipeMe li').swipeDelete({
+        		btnTheme: 'e',
+        		btnLabel: 'Delete',
+        		btnClass: 'aSwipeButton',
+        		click: function(e) {
+        			e.preventDefault();
+        			
+        			var url = $(e.target).attr('href');
+        			
+        			$(this).parents('li').slideUp();
+        			
+        			console.log('URL', url);
+        		}
+        	});
+        });
+        </script>
     </head>
     <body>

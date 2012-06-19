@@ -132,6 +132,7 @@ function sendSmokingNotification($userIndex) {
 	$cutOff = strtotime('-10 minutes');
 	
 	$defaultMessage = "Your buddy " . $_DATA['users'][$userIndex]['name'] . " is going to smoke!";
+	$buddyName = $_DATA['users'][$userIndex]['name'];
 	
 	// Loop through users and send notification if they have not recieved one in the last 10 minutes
 	foreach ($_DATA['users'] as $i => $user) {
@@ -180,28 +181,40 @@ function sendSmokingNotification($userIndex) {
 				
 				// Build HTML
 				$message = <<<HTML
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="content-type">
-  <title>TechHub :: ATOM Automation Notification</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>SmokeBuyy Notification</title>
+  <meta content="Don Bauer" name="author" />
 </head>
 <body>
-	<table style="border: medium none ; margin: 0px; padding: 0px; text-align: left; width: 100%%;">
-	  <tbody>
-		<tr>
-		  <td style="width: 128px;"><img style="width: 128px; height: 128px;" alt="SmokeBuddy" src="http://smoke.crouchingllama.org/images/webAppIcon.png"></td>
-		  <td colspan="2" rowspan="1" valign="middle">
-			<h3>Smoke Buddy Notification</h3>
-		  </td>
-		</tr>
-		<tr>
-			<td colspan="2" style="text-align: center;">
-			{$defaultMessage}
-			</td>
-		</tr>
-	  </tbody>
-	</table>
+<table style="text-align: left; width: 100%;">
+  <tbody>
+    <tr>
+      <td style="width: 132px;" colspan="1" rowspan="2">
+	<img style="width: 128px; height: 128px;" alt="SmokeBuddy" src="http://smoke.crouchingllama.org/images/webAppIcon.png" />
+      </td>
+      <td style="font-weight: bold; width: 998px;"><big><big><big>Smoke
+Buddy Notification</big></big></big></td>
+    </tr>
+    <tr>
+      <td>It's time for a break!
+Your buddy <span
+ style="text-decoration: underline; font-style: italic;">{$buddyName}</span>
+is going
+to smoke!</td>
+    </tr>
+    <tr align="center">
+      <td style="width: 998px;" colspan="2" rowspan="1"><span
+ style="color: rgb(153, 153, 153);"><span
+ style="font-style: italic;"><small>Message Sent Via
+SmokeBuddy Beta - By Don Bauer<br />
+A BauerBox Labs Production</small></span></span></td>
+    </tr>
+  </tbody>
+</table>
+<br />
 </body>
 </html>
 HTML;

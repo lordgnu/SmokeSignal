@@ -19,6 +19,12 @@ function loadSerialData() {
 	if (file_exists(DATA_DIR . DS . 'data.serial')) {
 		$data = unserialize(file_get_contents(DATA_DIR . DS . 'data.serial'));
 		
+		// Check for backup for today
+		$backupFile = DATA_DIR . DS . date('YYYY-MM-DD') . '.backup.data.serial';
+		if (!file_exists($backupFile)) {
+			file_put_contents($backupFile, serialize($data));
+		}
+		
 		// Check for status resets and the like
 		foreach ($data['users'] as $i => $user) {
 			// Check the index to make sure this isn't an empty row too...

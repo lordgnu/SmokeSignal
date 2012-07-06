@@ -31,7 +31,7 @@ function loadSerialData() {
 			if ($i !== 0 && trim("{$i}") == '') {
 				// Double check that this is an empty record
 				if (!array_key_exists('hash', $user)) {
-					unset($data[$i]);
+					unset($data['users'][$i]);
 					continue;
 				}
 			}

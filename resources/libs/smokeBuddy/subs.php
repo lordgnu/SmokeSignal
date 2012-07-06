@@ -21,6 +21,15 @@ function loadSerialData() {
 		
 		// Check for status resets and the like
 		foreach ($data['users'] as $i => $user) {
+			// Check the index to make sure this isn't an empty row too...
+			if ($i !== 0 && trim("{$i}") == '') {
+				// Double check that this is an empty record
+				if (!array_key_exists('hash', $user)) {
+					unset($data[$i]);
+					continue;
+				}
+			}
+			
 			if (array_key_exists('status', $user)) {
 				// Check for smoking and away statuses
 				if ($user['status'] == 'smoking' || $user['status'] == 'away') {

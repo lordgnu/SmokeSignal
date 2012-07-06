@@ -111,11 +111,12 @@ switch ($action) {
 		$pin = $_POST['login-pin'];
 		
 		// Loop through the users and find name
-		foreach ($_DATA['users'] as $user) {
+		foreach ($_DATA['users'] as $index => $user) {
 			if ($user['name'] == $name) {
 				// Found user!  Check Pin
 				if ($user['pin'] == $pin) {
 					$sbData = $user;
+					$sbData['index'] = $index;
 					$jump = true;
 					break;
 				}

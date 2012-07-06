@@ -31,29 +31,17 @@
         		data.options.reloadPage = true;
         	});
         });
+
+        $('div').live('pagehide', function(event, data) {
+			try {
+				console.log("Showing page: " + data.nextPage);
+			} catch(e) {
+				// Do nothing
+			}
+        });
         {/literal}
         </script>
         <script src="/js/jqm.js"></script>
-        
-        {*
-        <script src="/js/jqm.swipe.js"></script>
-        <script type="text/javascript">
-        /*
-        $(document).bind('pageinit', function(){
-        	// Attach Swipe to Delete Plugin to Status
-        	$('ul.swipeMe li').swipeDelete({
-        		btnTheme: 'e',
-        		btnLabel: 'Remove',
-        		btnClass: 'aSwipeBtn',
-        		click: function(e) {
-        			e.preventDefault();
-        			var url = $(e.target).attr('href');
-        			
-        		}
-        	});
-        });
-        */
-        *}
         </script>
     </head>
     <body>

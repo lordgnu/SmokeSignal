@@ -71,7 +71,19 @@ function loadSerialData() {
 
 function saveSerialData() {
 	global $_DATA;
-	file_put_contents(DATA_DIR . DS . 'data.serial', serialize($_DATA));
+	
+	$save = array(
+		'users'	=>	array()
+	);
+	
+	// Double check all data
+	foreach ($_DATA['users'] as $index => $user) {
+		if (array_key_exists('hash', $user) && array_key_exists('name', $user) && !empty($user['name']) && !empty($user['hash'])) {
+			$save['users'][$index] = $user;
+		}
+	}
+	
+	file_put_contents(DATA_DIR . DS . 'data.serial', serialize($save));
 }
 
 function addUser($data) {

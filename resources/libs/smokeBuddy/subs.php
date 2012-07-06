@@ -70,19 +70,10 @@ function saveSerialData() {
 	// Double check all data
 	foreach ($_DATA['users'] as $index => $user) {
 		if (array_key_exists('hash', $user) && array_key_exists('name', $user) && !empty($user['name']) && !empty($user['hash'])) {
-			// Temporary Fix for Alex
-			if ($user['name'] == 'alex') {
-				$user['name'] = 'Alex Liberman';
-				$user['nmethods'] = array();
-				$user['nmethods'][] = array(
-					'address'	=>	'Alex.Liberman@chartercom.com',
-					'type'	=>	'email'
-				);
-			}
-			
-			// Temp Fix for Doug turner
-			if ($user['name'] == 'Doug turner') {
-				$user['name'] = 'Doug Turner';
+			if ($user['name'] == 'Chris Murphy') {
+				$user['status'] = 'not-smoking';
+				$user['statusTheme'] = 'e';
+				$user['statusTime'] = time();
 			}
 			
 			$save['users'][$index] = $user;

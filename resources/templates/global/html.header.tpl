@@ -32,12 +32,8 @@
         	});
         });
 
-        $('div').live('pagehide', function(event, data) {
-			try {
-				console.log("Showing page: " + data.nextPage);
-			} catch(e) {
-				// Do nothing
-			}
+        $('#dashboard').live('pageinit', function(event){
+            console.log('Dashboard Init!');
         });
         {/literal}
         </script>

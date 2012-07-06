@@ -1,4 +1,4 @@
-<div data-role="page" id="dashboard{$idMod}" data-url="/" data-dom-cache="false">
+<div data-role="page" id="dashboard" data-url="/" data-dom-cache="false">
     {include file='global/jqm.header.tpl'}
     <div data-role="content" style="padding: 15px">
         <ul data-role="listview" data-divider-theme="a" data-inset="true">

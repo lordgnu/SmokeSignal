@@ -69,13 +69,7 @@ function saveSerialData() {
 	
 	// Double check all data
 	foreach ($_DATA['users'] as $index => $user) {
-		if (array_key_exists('hash', $user) && array_key_exists('name', $user) && !empty($user['name']) && !empty($user['hash'])) {
-			if ($user['name'] == 'Chris Murphy') {
-				$user['status'] = 'not-smoking';
-				$user['statusTheme'] = 'e';
-				$user['statusTime'] = time();
-			}
-			
+		if (is_int($index) && array_key_exists('hash', $user) && array_key_exists('name', $user) && !empty($user['name']) && !empty($user['hash'])) {
 			$save['users'][$index] = $user;
 		}
 	}

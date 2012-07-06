@@ -35,6 +35,10 @@
         $('#dashboard').live('pageinit', function(event){
             console.log('Dashboard Init!');
         });
+
+        $('div').live('pageshow', function(event, ui) {
+			console.log(ui);
+        });
         {/literal}
         </script>
         <script src="/js/jqm.js"></script>

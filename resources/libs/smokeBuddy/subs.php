@@ -27,15 +27,6 @@ function loadSerialData() {
 		
 		// Check for status resets and the like
 		foreach ($data['users'] as $i => $user) {
-			// Check the index to make sure this isn't an empty row too...
-			if ($i !== 0 && trim("{$i}") == '') {
-				// Double check that this is an empty record
-				if (!array_key_exists('hash', $user)) {
-					unset($data['users'][$i]);
-					continue;
-				}
-			}
-			
 			if (array_key_exists('status', $user)) {
 				// Check for smoking and away statuses
 				if ($user['status'] == 'smoking' || $user['status'] == 'away') {
@@ -79,6 +70,21 @@ function saveSerialData() {
 	// Double check all data
 	foreach ($_DATA['users'] as $index => $user) {
 		if (array_key_exists('hash', $user) && array_key_exists('name', $user) && !empty($user['name']) && !empty($user['hash'])) {
+			// Temporary Fix for Alex
+			if ($user['name'] == 'alex') {
+				$user['name'] = 'Alex Liberman';
+				$user['nmethods'] = array();
+				$user['nmethods'][] = array(
+					'address'	=>	'Alex.Liberman@chartercom.com',
+					'type'	=>	'email'
+				);
+			}
+			
+			// Temp Fix for Doug turner
+			if ($user['name'] == 'Doug turner') {
+				$user['name'] = 'Doug Turner';
+			}
+			
 			$save['users'][$index] = $user;
 		}
 	}

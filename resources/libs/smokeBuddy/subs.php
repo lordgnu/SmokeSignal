@@ -243,7 +243,7 @@ HTML;
 				$address = trim($m['address']);
 				
 				// Add subject
-				$subject = 'SmokeBuddy Notification';
+				$subject = "SmokeBuddy: {$buddyName} is going to Smoke!";
 			} elseif ($m['type'] == 'att') {
 				// Set Headers
 				$headers[] = 'Content-Type: text/plain';

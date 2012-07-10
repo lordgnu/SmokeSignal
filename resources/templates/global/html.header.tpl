@@ -37,7 +37,7 @@
         });
 
         $('div').live('pageshow', function(event, ui) {
-			console.log(ui);
+			console.log(ui.prevPage);
         });
         {/literal}
         </script>

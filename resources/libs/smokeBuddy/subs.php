@@ -38,15 +38,6 @@ function loadSerialData() {
 						$data['users'][$i]['statusExpire'] = -1;
 					}
 				}
-				
-				// Aaron Brown Fix
-				if ($user['name'] == 'Aaron Brown') {
-					foreach ($user['nmethods'] as $ni => $n) {
-						if ($n['type'] == 'att') {
-							unset($data['users'][$i]['nmethods'][$ni]);
-						}
-					}
-				}
 			} else {
 				// Set default status of not smoking
 				$data['users'][$i]['status'] = 'not-smoking';
